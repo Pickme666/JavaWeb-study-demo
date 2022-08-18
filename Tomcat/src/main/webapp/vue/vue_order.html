@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 常用命令</title>
+</head>
+<body>
+<div id="app">
+
+    <!-- v-bind 为HTML标签绑定属性值，如设置 href , css样式等-->
+    <a v-bind:href="url">点击一下</a>
+    <!--简写，v-bing可以省略-->
+    <a :href="url">点击一下</a><br><br>
+
+    <!-- v-model 该指令可以给表单项标签绑定模型数据。这样就能实现双向绑定效果。例如：-->
+    <!--此文本框使用v-model绑定url模型数据，根据输入的内容改变url属性的值-->
+    <input type="text" v-model="url"><br><br>
+
+    <!-- v-on 为HTML标签绑定事件 v-on:事件名 (事件属性名去掉on: onclick -> v-on:click)-->
+    <!--为按钮绑定单击事件, 单击后调用Vue对象的 sing() 方法-->
+    <input type="button" value="按钮1" v-on:click="sing()">
+    <!--简写, 把 v-on: 替换为 @ -->
+    <input type="button" value="按钮2" @click="sing()"><br><br>
+
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        methods:{
+            sing(){
+                alert("你干嘛, 哎呦~");
+            }
+        },
+        data(){
+            return{
+                name:"",
+                url:"https://www.4399.com"
+            }
+        }
+    })
+</script>
+</body>
+</html>

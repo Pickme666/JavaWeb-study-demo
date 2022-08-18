@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+    XML文档约束：DTD、schema
+ -->
+
+<student>
+    <message id = "1" vip = "true">
+        <name>ikun</name>
+        <sex>女</sex>
+        <school>偶像练习生</school>
+    </message>
+    <message id = "2" vip = "true">
+        <name>顶真</name>
+        <sex>男</sex>
+        <school>李唐</school>
+    </message>
+    <message id = "3" vip = "false">
+        <name>吴彦祖</name>
+        <sex>男</sex>
+        <school>垃圾南华</school>
+    </message>
+</student>

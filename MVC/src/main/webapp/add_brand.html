@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加品牌</title>
+</head>
+<body>
+    <div id="app" style="margin: 30px 0 0 40px">
+        <h3>添加品牌</h3>
+        <form action="" method="post">
+            品牌名称：
+            <!--每个属性都用v-model绑定模型数据-->
+            <input name="brandName" v-model="brand.brandName"><br><br>
+            企业名称：
+            <input name="companyName" v-model="brand.companyName"><br><br>
+            排序：
+            <input name="ordered" v-model="brand.ordered" style="margin-left: 32px"><br><br>
+            描述信息：
+            <textarea rows="5" cols="20" name="description" v-model="brand.description"></textarea><br><br>
+            状态：
+            <input type="radio" name="status" v-model="brand.status" value="0" style="margin-left: 30px">禁用
+            <input type="radio" name="status" v-model="brand.status" value="1" style="margin-left: 20px">启用<br><br>
+            <!--绑定v-on单击事件，submitGo() 方法没有参数可以省略括号-->
+            <input @click="submitGo" type="submit" value="提交" style="width: 100px; height: 30px">
+        </form>
+    </div>
+
+    <!--引入vue和axios的js文件-->
+    <script src="js/axios-0.18.0.js"></script>
+    <script src="js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data(){
+                return{
+                    //模型数据 brand 对象
+                    brand:{}
+                }
+            },
+            methods:{
+                submitGo(){
+                    //提升this作用范围
+                    var _this = this;
+                    //发送ajax异步请求
+                    axios({
+                        method:"post",
+                        url:"http://localhost/MVC/add",
+                        data:_this.brand
+                    }).then(function (resp){
+                        //判断响应数据是否添加成功
+                        if (resp.data == "1"){
+                            location.href = "/MVC/brand.html";
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

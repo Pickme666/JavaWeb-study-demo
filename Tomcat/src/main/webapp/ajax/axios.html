@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Axios</title>
+</head>
+<body>
+Axios 对原生的AJAX进行封装，简化书写
+
+<!--引入 axios 的 js 文件-->
+<script src="./js/axios-0.18.0.js"></script>
+
+<script>
+/*
+    axios() 是用来发送异步请求的，小括号中使用 js 对象传递请求相关的参数：
+    method 属性：用来设置请求方式的。取值为 get 或者 post 。
+    url 属性：用来书写请求的资源路径。如果是 get 请求，需要将请求参数拼接到路径的后面，格式为： url?参数名=参数值&参数名2=参数值2 。
+    data 属性：作为请求体被发送的数据。也就是说如果是 post 请求的话，数据需要作为 data 属性的值。
+    then() 中传递的匿名函数称为回调函数，意为响应后调用的函数，通过 resp.data 可以获取到响应的数据。
+ */
+
+    //Axios 发送get请求
+    axios({
+        method: "get",
+        url: "http://localhost/tomcat_demo/axios?username=ikun"
+    }).then(function (resp) {
+        //resp.data 获取响应的数据
+        alert(resp.data);
+    })
+
+    //Axios 发送 post请求
+    axios({
+        method: "post",
+        url: "http://localhost/tomcat_demo/axios",
+        data: "username=kunkun" //请求参数
+    }).then(function (resp) {
+        //resp.data 响应的数据
+        alert(resp.data);
+    })
+
+
+    //为了方便起见，Axios 已经为所有支持的请求方法提供了简写：axios.请求方式(url, 请求参数)
+
+    //get请求代码可以改为如下：
+    // axios.get("http://localhost/tomcat_demo/axios?username=zhangsan").then(function
+    //         (resp) {
+    //     alert(resp.data);
+    // });
+
+    //post请求代码可以改为如下：
+    // axios.post("http://localhost/tomcat_demo/axios", "username=zhangsan").then(function
+    //         (resp) {
+    //     alert(resp.data);
+    // })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>品牌企业</title>
+</head>
+<body>
+<div id="app">
+    <h2>欢迎</h2><br>
+    <input type="button" value="新增" id="add"><br>
+    <hr>
+    <table id="data-tab" border="1" cellspacing="0" width="1200">
+        <tr style="height: 40px">
+            <th>序号</th>
+            <th>品牌名称</th>
+            <th>企业名称</th>
+            <th>排序</th>
+            <th>品牌介绍</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        <!--使用v-for遍历brands数组模型数据, 渲染tr-->
+        <tr v-for="(brand,i) in brands" align="center">
+            <td>{{i + 1}}</td>
+            <td>{{brand.brandName}}</td>
+            <td>{{brand.companyName}}</td>
+            <td>{{brand.ordered}}</td>
+            <td>{{brand.description}}</td>
+            <td>{{brand.statusStr}}</td>
+            <td>
+                <a href="selectById?id=${b.id}">修改</a>&nbsp;&nbsp;
+                <a href="delete?id=${b.id}">删除</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--引入vue和axios的js文件-->
+<script src="js/vue.js"></script>
+<script src="js/axios-0.18.0.js"></script>
+<script>
+    //新增
+    document.getElementById("add").onclick = function () {
+        location.href = "add_brand.html";
+    }
+
+    //使用vue简化
+    new Vue({
+        el: "#app",
+        data(){
+            return{
+                brands:[]
+            }
+        },
+        //vue挂载完毕钩子方法
+        mounted(){
+            //提升this作用范围
+            var _this = this;
+            // 页面加载完成后，发送ajax异步请求，查询数据
+            axios({
+                method:"get",
+                url:"http://localhost/MVC/selectAll"
+            }).then(function (resp) {
+                _this.brands = resp.data;
+            })
+        }
+    })
+
+
+    //当页面加载完成后, 发送ajax请求
+    /*window.onload = function () {
+        axios({
+            method: "get",
+            url:"http://localhost/MVC/selectAll"
+        }).then(function (resp) {
+            //获取响应的json数据
+            let brands = resp.data;
+            //alert(brands);
+            //设置表格列名
+            let dataTable = "<tr style=\"height: 40px\">\n" +
+                    "           <th>序号</th>\n" +
+                    "           <th>品牌名称</th>\n" +
+                    "           <th>企业名称</th>\n" +
+                    "           <th>排序</th>\n" +
+                    "           <th>品牌介绍</th>\n" +
+                    "           <th>状态</th>\n" +
+                    "           <th>操作</th>\n" +
+                    "        </tr>";
+            //遍历json数据 (brands集合)
+            for (let i = 0; i < brands.length; i++) {
+                let brand = brands[i];
+                //判断status属性
+                let sta;
+                if (brand.status === 1) {
+                    sta = "启用";
+                } else {
+                    sta = "禁用";
+                }
+                //设置表格每行数据
+                dataTable += "\n<tr align=\"center\" style=\"height: 30px\">\n" +
+                        "        <td>" + (i+1) + "</td>\n" +
+                        "        <td>" + brand.brandName + "</td>\n" +
+                        "        <td>" + brand.companyName + "</td>\n" +
+                        "        <td>" + brand.ordered + "</td>\n" +
+                        "        <td>" + brand.description + "</td>\n" +
+                        "        <td>" + sta + "</td>\n" +
+                        "        <td><a href=\"selectById?id=${b.id}\">修改</a>&nbsp;&nbsp;<a href=\"delete?id=${b.id}\">删除</a></td>\n" +
+                        "    </tr>"
+            }
+            //赋值表格数据
+            document.getElementById("data-tab").innerHTML = dataTable;
+        });
+    }*/
+
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON 数据</title>
+</head>
+<body>
+
+<!--
+    JSON（JavaScript Object Notation）JavaScript对象表示法，
+    由于其语法格式简单，层次结构鲜明，现多用于作为数据载体，在网络中进行数据传输。
+    JSON 串的键要求必须使用双引号括起来，而值根据要表示的类型确定。value 的数据类型分为如下：
+        数字（整数或浮点数）
+        字符串（使用双引号括起来）
+        逻辑值（true或者false）
+        数组（在方括号中）
+        对象（在花括号中）
+        null
+-->
+
+<script>
+
+    //定义json
+    var json = {
+        "name":"zhuangsan",
+        "age":20,
+        "play":[1,2,3]
+    };
+
+    //json根据key获取值
+    alert(json.name);
+    alert(json.play);
+
+</script>
+</body>
+</html>

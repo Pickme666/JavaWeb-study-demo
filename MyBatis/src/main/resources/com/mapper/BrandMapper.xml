@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--MyBatis案例练习-->
+<mapper namespace="com.mapper.BrandMapper">
+
+    <!--使用MyBatis框架时, 数据库的字段名和实体类的属性名不一样 , 则不能自动封装数据 (java语言和数据库的命名规则不同)
+        resultMap映射字段, 使用<resultMap>映射字段时可以将<select>标签中的 resultType 属性替换为 resultMap="resultMap id"
+        <resultMap>标签属性: id 唯一标识;  type 映射的类型, 支持别名
+        <resultMap>的子标签: <id> 主键的字段映射; <result> 一般字段的映射
+        <resultMap>标签的子标签属性: column 表的列名; property 实体类属性变量名;
+    -->
+    <resultMap id="brandResultMap" type="Brand"> <!--com.pojo.Brand-->
+        <result column="brand_name" property="brandName" />
+        <result column="company_name" property="companyName" />
+    </resultMap>
+
+
+    <!--查询所有============================================================================================-->
+    <select id="selectAll" resultMap="brandResultMap">
+        select * from tb_brand;
+    </select>
+    <!--    <select id="selectAll" resultType="com.pojo.Brand">-->
+    <!--        select * from tb_Brand;-->
+    <!--    </select>-->
+
+
+    <!--查询详细============================================================================================-->
+    <!--MyBatis参数占位符
+            1. #{} 会把参数替换为PreparedStatement的 ? 占位, 可以防止sql注入, 一般情况都使用 #{} 占位符
+            2. ${} 使用字符串拼接, 不能防止sql注入, 只有在表名或列名不固定的情况下可能使用此占位符
+        parameterType 属性可以设置占位参数类型, 不过一般不会用到
+        xml特殊字符处理: 1.转义字符, 如 &lt 对应<小于号; 2.CDATA随意编写区, CD提示
+    -->
+    <select id="selectById" resultMap="brandResultMap">
+        select * from tb_brand where id = #{id};
+    </select>
+
+
+    <!--多条件查询 (有BUG !)=================================================================================-->
+    <!--    <select id="selectByCondition" resultMap="brandResultMap">-->
+    <!--        select * from tb_brand where status = #{status}-->
+    <!--        and company_name like #{companyName}-->
+    <!--        and brand_name like #{brandName};-->
+    <!--    </select>-->
+
+
+    <!--动态多条件查询 (解决BUG)==============================================================================-->
+    <!--动态SQL: 增加 <if> 标签进行条件判断, 在 test 属性中输入条件表达式
+        解决完善:
+            1.恒等式 where 1 = 1
+            2.添加 <where> 标签替换where关键字
+    -->
+    <select id="selectByCondition" resultMap="brandResultMap">
+        select * from tb_brand <!--where 1 = 1-->
+        <where>
+            <if test="status != null">
+                <!--如果参数不为空, 就加上这条sql语句-->
+                and status = #{status}
+            </if>
+            <if test="companyName != null and companyName != ''">
+                and company_name like #{companyName}
+            </if>
+            <if test="brandName != null and brandName != ''">
+                and brand_name like #{brandName}
+            </if>
+        </where>
+    </select>
+
+
+    <!--单条件动态查询=======================================================================================-->
+    <!--<choose> 标签可以从多个条件中选择一个, 类似于java的switch语句-->
+    <select id="selectByConditionSingle" resultMap="brandResultMap">
+        select * from tb_brand <!--where-->
+        <where>
+            <choose> <!--相当于switch-->
+                <when test="status != null"> <!--相当于case-->
+                    status = #{status}
+                </when>
+                <when test="companyName != null and companyName != ''">
+                    company_name like #{companyName}
+                </when>
+                <when test="brandName != null and brandName != ''">
+                    brand_name like #{brandName}
+                </when>
+                <!--相当于default (where 1 = 1 避免sql语法报错)-->
+    <!--                <otherwise>-->
+    <!--                    1 = 1-->
+    <!--                </otherwise>-->
+            </choose>
+        </where> <!--使用<where>可以省略<otherwise>, <where>可以动态的调整sql语句-->
+    </select>
+
+
+    <!--添加数据==========================================================================================-->
+    <!--主键返回: 数据添加成功后, 返回数据行主键的值
+                useGeneratedKeys="true" 设置主键返回
+                keyProperty="id" 返回主键值给实体类的id属性
+    -->
+    <insert id="addData" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_brand (brand_name, company_name, ordered, description, status)
+        values (#{brandName}, #{companyName}, #{ordered}, #{description}, #{status})
+    </insert>
+
+
+    <!--动态修改数据=======================================================================================-->
+    <!--使用 <set> 标签, 修改动态的字段-->
+    <update id="update">
+        update tb_brand
+        <set>
+            <if test="brandName != null and brandName != ''">
+                brand_name = #{brandName},
+            </if>
+            <if test="companyName != null and companyName != ''">
+                company_name = #{companyName},
+            </if>
+            <if test="ordered != null">
+                ordered = #{ordered},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <!--删除数据 (根据id删除)=================================================================================-->
+    <delete id="deleteById">
+        delete from tb_brand where id = #{id}
+    </delete>
+
+
+    <!--批量删除=============================================================================================-->
+    <!--foreach 用来迭代任何可迭代的对象（如数组，集合）, 实现动态删除
+        MyBatis会将数组参数封装成一个Map集合, 默认key = array, value为数组参数
+        所以collection属性值为array, 也可以在接口方法使用@Param注解改变Map集合的默认key名称
+            item 本次迭代获取到的元素。
+            separator 集合或数组项迭代之间的分隔符
+            open="(" 和 close=")" 为拼接SQL语句之前和之后拼接的语句，只会拼接一次
+    -->
+    <delete id="deleteByIdBach">
+        delete from tb_brand where id in
+        <foreach collection="array" item="id" separator="," open="(" close=")">
+            #{id} <!--当批量删除时会进行迭代 #{id1},#{id2},#{idn}-->
+        </foreach>
+    </delete>
+
+</mapper>

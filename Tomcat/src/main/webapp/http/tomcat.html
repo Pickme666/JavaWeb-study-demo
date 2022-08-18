@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web</title>
+</head>
+<body>
+    <h3>Web服务器</h3>
+    * Web服务器:负责解析 HTTP 协议，解析请求数据，并发送响应数据<br>
+    * 浏览器按照HTTP协议发送请求和数据，后台就需要一个Web服务器软件来根据HTTP协议解析请求和数据，然后把处理结果再按照HTTP协议发送给浏览器<br>
+    * Web服务器软件有很多，我们课程中将学习的是目前最为常用的==Tomcat==服务器<br>
+    <br>
+    <h3>Tomcat</h3>
+    Tomcat的相关概念:<br>
+    * Tomcat是Apache软件基金会一个核心项目，是一个开源免费的轻量级Web服务器，支持Servlet/JSP少量JavaEE规范。<br>
+    * JavaEE: Java Enterprise Edition,Java企业版。指Java企业级开发的技术规范总和。包含13项技术规范:JDBC、JNDI、EJB、RMI、JSP、Servlet、XML、JMS、Java IDL、JTS、JTA、JavaMail、JAF。<br>
+    * 因为Tomcat支持Servlet/JSP规范，所以Tomcat也被称为Web容器、Servlet容器。Servlet需要依赖Tomcat才能运行。<br>
+    * Tomcat的官网: https://tomcat.apache.org/ 从官网上可以下载对应的版本进行使用。<br>
+    <br>
+    <h3>IDEA使用Tomcat</h3>
+    1.将安装好的Tomcat集成到IDEA中来完成项目部署<br>
+    2.使用Maven中的Tomcat插件来完成部署项目<br>
+    <br>
+    <hr>
+    <h4>post请求</h4>
+    <form action="/tomcat_demo/httpServ" method="post">
+        <input type="text" name="text">
+        <input type="submit">
+    </form>
+
+</body>
+</html>

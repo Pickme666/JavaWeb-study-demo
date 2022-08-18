@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--
+    form标签属性
+        action: 规定当提交表单时向何处发送表单数据，该属性值就是URL
+            * 以后会将数据提交到服务端，该属性需要书写服务端的URL。书写 # ，表示提交到当前页面来看效果。
+            * 表单项数据要想被提交，则必须指定其name属性
+        method: 规定用于发送表单数据的方式, method取值有如下两种：
+            1. get: 默认值。如果不设置method属性则默认就是该值
+                * 请求参数会拼接在URL后边
+                * url的长度有限制 4KB
+            2. post:
+                * 浏览器会将数据放到http协议的请求消息体中
+                * 请求参数无限制的
+-->
+
+    <form action="#" method="post">
+        <input type="text" name="username">
+        <input type="submit">
+
+    </form>
+
+
+</body>
+</html>

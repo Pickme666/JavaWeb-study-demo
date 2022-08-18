@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+
+    <!--用户登录案例 html登录页面-->
+
+    <style>
+        .txt{
+            width: 200px;
+            height: 30px;
+            margin-left: 10px;
+            padding-left: 5px;
+        }
+        .test{
+            margin: 40px 0 30px;
+        }
+        p{
+            color: #545454;
+            font-size: 14px;
+            margin: 20px 0 0 50px;
+        }
+        #demo{
+            width: 300px;
+            height: 350px;
+            background-color: rgba(234, 244, 252, 0.48);
+            padding: 20px 30px 30px 50px;/*上,右,下,左*/
+            margin: 100px 100px 100px 150px;
+            border: 10px outset #d7e7ee;
+        }
+        #userSubmit{
+            width: 180px;
+            height: 40px;
+            margin: 20px 0 0 45px;
+            border: none;
+            background-color: #4f92de;
+            color: white;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <h2>登录</h2>
+        <form action="/tomcat_war/login" method="post" id="login">
+            <div class="test">
+                <label>用户名
+                    <input type="text" name="name" class="txt"/>
+                </label>
+            </div>
+            <div class="test">
+                <label><span style="margin-right: 15px">密码</span>
+                    <input type="password" name="password" class="txt"/>
+                </label>
+            </div>
+            <input type="submit" value="登录" id="userSubmit"/>
+            <p>没有账户点此 <a href="register.html">注册</a></p>
+        </form>
+    </div>
+</body>
+</html>

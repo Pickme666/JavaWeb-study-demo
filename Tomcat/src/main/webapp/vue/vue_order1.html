@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 常用命令1</title>
+</head>
+<body>
+<div id="app">
+
+    <!-- v-if 条件判断, 判断是否渲染某元素-->
+    <div v-if="sum == 1">两年半</div>
+    <div v-else-if="sum == 2">练习生</div>
+    <div v-else>美国校队</div>
+
+    <!-- v-show 判断是否展示某元素, 区别在于此为切换样式display属性的值-->
+    <div v-show="sum == 4">打篮球</div>
+
+    <!--绑定sum模型数据-->
+    <input v-model="sum"><br><br>
+
+    <!-- v-for 列表渲染, 遍历容器的元素或对象的属性 <标签 v-for="变量名 in 集合模型数据"> -->
+    <div v-for="sk in skill">
+        {{sk}}
+    </div><br>
+    <!--增加索引值遍历，<标签 v-for="(变量名,索引变量) in 集合模型数据">，索引变量为初始值0 -->
+    <div v-for="(sk,i) in skill">
+        {{i+1}}. {{sk}}
+    </div>
+
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return{
+                sum:1,
+                skill:["唱","跳","rap","篮球"] //数组模型数据
+            }
+        }
+    })
+</script>
+</body>
+</html>

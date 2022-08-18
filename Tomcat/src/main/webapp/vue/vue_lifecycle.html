@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 生命周期</title>
+</head>
+<body>
+
+<!--
+    生命周期的八个阶段：每触发一个生命周期事件，会自动执行一个生命周期方法，这些生命周期方法也被称为钩子方法。
+    mounted ：挂载完成，即Vue初始化成功，HTML页面渲染成功。可以在该方法中发送异步请求，加载数据。
+-->
+
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        mounted(){
+            alert("Vue 挂载完毕")
+        },
+        data(){
+            return{}
+        }
+    })
+</script>
+</body>
+</html>

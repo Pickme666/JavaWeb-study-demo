@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP 请求</title>
+
+    <style>
+        .div{
+            margin-left: 50px;
+        }
+        #post-su{
+            margin-left: 10px;
+        }
+        hr{
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+        #select{
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+        <h4>HTTP 请求</h4>
+        <form action="/tomcat_demo/req" method="get" id="form">
+            <label>
+                <input type="text" name="userText">
+            </label>
+            <br><br>
+            <label>
+                <input type="checkbox" name="choose" value="1">
+                唱
+            </label>
+            <label>
+                <input type="checkbox" name="choose" value="2">
+                跳
+            </label>
+            <label>
+                <input type="checkbox" name="choose" value="3">
+                rap
+            </label>
+            <br><br>
+            <input type="submit" id="get-su" value="GET 请求">
+            <input type="submit" id="post-su" value="POST 请求">
+        </form>
+    </div>
+    <hr>
+    <!--<div class="div">
+        <h4>post 请求</h4>
+        <form action="/tomcat_demo/req" method="post">
+            <label>
+                <input type="text" name="userText">
+            </label>
+            <br><br>
+            <label>
+                <input type="checkbox" name="choose" value="1">
+                唱
+            </label>
+            <label>
+                <input type="checkbox" name="choose" value="2">
+                跳
+            </label>
+            <label>
+                <input type="checkbox" name="choose" value="3">
+                rap
+            </label>
+            <br><br>
+            <input type="submit">
+        </form>
+    </div>
+    <hr>-->
+
+    <div class="div">
+        <label>
+            当前表单提交URL
+            <select id="select" name="s">
+                <option>/req</option>
+                <option>/Common</option>
+                <option>/relay</option>
+                <option>/get</option>
+                <option>/resp</option>
+                <option>/redirect</option>
+                <option>/codec</option>
+                <option>/jspServ</option>
+            </select>
+        </label>
+        <!--当前表单提交的URL为: <span id="url">/tomcat_demo/req</span><br><br>
+        <input type="button" id="change" value="切换提交URL">-->
+    </div>
+
+    <script>
+        const get = "get";
+        const post = "post";
+        const path = "/tomcat_demo";
+
+        let form = document.getElementById("form");
+        let select = document.getElementById("select");
+
+        select.onchange = function () {
+            let index = select.selectedIndex;  //获取下拉菜单当前索引值
+            form.action =  path + select.options[index].text;  //获取索引值文本
+        }
+
+        document.getElementById("get-su").onclick = function () {
+            form.method = get;
+        }
+        document.getElementById("post-su").onclick = function () {
+            form.method = post;
+        }
+    </script>
+
+    <!--<script>
+        const req = "/tomcat_demo/req";
+        const Common = "/tomcat_demo/Common";
+        const codec = "/tomcat_demo/codec"
+        let span = document.getElementById("url");
+        let form = document.getElementsByTagName("form");
+
+        let sum = 0;
+        document.getElementById("change").onclick = function () {
+            switch (sum) {
+                case 0:
+                    form[0].action = Common;
+                    form[1].action = Common;
+                    span.innerHTML = Common;
+                    sum++;
+                    break;
+                case 1:
+                    form[0].action = codec;
+                    form[1].action = codec;
+                    span.innerHTML = codec;
+                    sum++;
+                    break;
+                case 2:
+                    form[0].action = req;
+                    form[1].action = req;
+                    span.innerHTML = req;
+                    sum = 0;
+                    break;
+            }
+
+            // if (span.innerHTML === "/tomcat_demo/req") {
+            //     for (let i = 0; i < form.length; i++) {
+            //         form[i].action = "/tomcat_demo/Common"
+            //     }
+            //     span.innerHTML = "/tomcat_demo/Common";
+            // } else {
+            //     for (let i = 0; i < form.length; i++) {
+            //         form[i].action = "/tomcat_demo/req"
+            //     }
+            //     span.innerHTML = "/tomcat_demo/req";
+            // }
+        }
+    </script>-->
+</body>
+</html>

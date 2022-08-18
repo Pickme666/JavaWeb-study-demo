@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- XML
+XML是一种可扩展的文本标记语言，常用与传输和储存数据，可以作为配置文件来储存系统的信息
+<?xml version="1.0" encoding="UTF-8" ?> 文档声明必须处于第一行
+特殊字符：
+    &lt;    <
+    &gt;    >
+    &amp;   &
+    &apos;  '
+    &quot;  "
+-->
+
+<student>
+    <name>ikun</name>
+    <sex>男</sex>
+    <school>垃圾南华</school>
+    <info id = "1" vip = "true">
+        <age>20</age>
+        <addr>世界最高层</addr>
+    </info>
+    <sql>
+        select * from user where age &lt; 20
+        <![CDATA[
+                无限制内容区
+                select * from user where age < 20
+        ]]>
+    </sql>
+</student>

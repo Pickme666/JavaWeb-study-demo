@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+
+    <!--用户登录案例 html注册页面-->
+
+    <style>
+        .txt{
+            width: 200px;
+            height: 30px;
+            margin-left: 10px;
+            padding-left: 5px;
+        }
+        .code{
+            margin-left: 10px;
+            width: 60px;
+            height: 30px;
+        }
+        .test{
+            margin: 25px 0 20px;
+            display: inline-block;
+        }
+        p{
+            color: #545454;
+            font-size: 14px;
+            margin: 20px 0 0 50px;
+        }
+        #demos{
+            width: 300px;
+            height: 430px;
+            background-color: rgba(99, 238, 103, 0.1);
+            padding: 20px 30px 30px 50px;/*上,右,下,左*/
+            margin: 100px 100px 100px 150px;
+            border: 10px outset #bfeace;
+        }
+        #registerSu{
+            width: 180px;
+            height: 40px;
+            margin: 20px 0 0 45px;
+            border: none;
+            background-color: #45d248;
+            color: white;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="demos">
+        <h2>注册</h2>
+        <form action="/tomcat_war/register" method="post" id="register">
+            <div class="test">
+                <label>用户名
+                    <input type="text" name="name" class="txt"/>
+                </label>
+            </div>
+            <div class="test">
+                <label><span style="margin-right: 16px">密码</span>
+                    <input type="password" name="password" class="txt"/>
+                </label>
+            </div>
+            <div class="test">
+                <label>验证码
+                    <input type="text" name="checkCode" class="code"/>
+                    <img id="img" src="/tomcat_war/checkCode">
+                    <a href="#" id="changeImg">看不清？</a>
+                </label>
+            </div>
+            <input type="submit" value="注册" id="registerSu"/>
+            <p>已有账户点此 <a href="login.html">登录</a></p>
+        </form>
+</div>
+
+<script>
+    //刷新验证码图片
+    document.getElementById("changeImg").onclick = function () {
+        //获取当前时间的毫秒数值
+        let date = new Date().getMilliseconds();
+        //使每次刷新src都为不同的URL
+        document.getElementById("img").src = "/tomcat_war/checkCode?" + date;
+    }
+</script>
+</body>
+</html>

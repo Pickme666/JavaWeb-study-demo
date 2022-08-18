@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单验证</title>
+		
+		<link href="../css/10-style.css" rel="stylesheet"/>
+		
+	</head>
+		
+	<!-- 表单验证案例
+		1. 当输入框失去焦点时，验证输入内容是否符合要求
+		2. 当点击注册按钮时，判断所有输入框的内容是否都符合要求，如果不合符则阻止表单提交
+	 -->
+	
+	<body>
+		<div id="demo">
+			<h2>用户注册</h2>
+			<form name="login" action="#" method="GET" id="login">
+				<div class="test">
+					<label>用户名</label>
+					<input type="text" name="username" id="username"/>
+					<span id="username_err" style="display: none">用户格式名错误</span>
+				</div>
+				<div class="test">
+					<label>密码</label>
+					<input type="text" name="password" id="password"/>
+					<span id="password_err" style="display: none">密码格式错误</span>
+				</div>
+				<div class="test">
+					<label>手机号</label>
+					<input type="text" name="tel" id="tel"/>
+					<span id="tel_err" style="display: none">手机号格式错误</span>
+				</div>
+				<p><input type="checkbox" name="deal" id="deal"><a href="">用户协议条款</a></p>
+				<span id="deal_err" style="display: none">请勾选协议条款</span>
+				<input type="submit" name="userSubmit" value="立即注册" id="userSubmit"/>
+			</form>
+		</div>
+		
+		<script>
+			
+		//1. 验证用户名是否符合规则
+			//1.1 获取用户名的输入框
+			var usernameInput = document.getElementById("username");
+		
+			//1.2 绑定onblur事件 失去焦点
+			usernameInput.onblur = checkUsername;
+		
+			function checkUsername() {
+				//1.3 获取用户输入的用户名
+				var username = usernameInput.value.trim();
+		
+				//1.4 判断用户名是否符合规则：长度 6~12,单词字符组成
+				var reg = /^\w{6,12}$/;
+				var flag = reg.test(username);
+		
+				//var flag = username.length >= 6 && username.length <= 12;
+				if (flag) {
+					//符合规则
+					document.getElementById("username_err").style.display = 'none';
+				} else {
+					//不合符规则
+					document.getElementById("username_err").style.display = '';
+				}
+		
+				return flag;
+			}
+		
+		//2. 验证密码是否符合规则
+			//2.1 获取密码的输入框
+			var passwordInput = document.getElementById("password");
+		
+			//2.2 绑定onblur事件 失去焦点
+			passwordInput.onblur = checkPassword;
+		
+			function checkPassword() {
+				//2.3 获取用户输入的密码
+				var password = passwordInput.value.trim();
+		
+				//2.4 判断密码是否符合规则：长度 6~12
+				var reg = /^\w{6,12}$/;
+				var flag = reg.test(password);
+		
+				//var flag = password.length >= 6 && password.length <= 12;
+				if (flag) {
+					//符合规则
+					document.getElementById("password_err").style.display = 'none';
+				} else {
+					//不合符规则
+					document.getElementById("password_err").style.display = '';
+				}	
+					
+				return flag;
+			}
+		
+		//3. 验证手机号是否符合规则
+			//3.1 获取手机号的输入框
+			var telInput = document.getElementById("tel");
+		
+			//3.2 绑定onblur事件 失去焦点
+			telInput.onblur = checkTel;
+		
+			function checkTel() {
+				//3.3 获取用户输入的手机号
+				var tel = telInput.value.trim();
+		
+				//3.4 判断手机号是否符合规则：长度 11，数字组成，第一位是1
+		
+				//var flag = tel.length == 11;
+				var reg = /^[1]\d{10}$/;
+				var flag = reg.test(tel);
+				if (flag) {
+					//符合规则
+					document.getElementById("tel_err").style.display = 'none';
+				} else {
+					//不合符规则
+					document.getElementById("tel_err").style.display = '';
+				}
+				return flag;
+			}
+			
+		//4. 表单提交
+			//4.1 获取表单对象
+			var regForm = document.getElementById("login");
+		
+			//4.2 绑定onsubmit 事件
+			regForm.onsubmit = function () {
+				
+				//挨个判断每一个表单项是否都符合要求，如果有一个不合符，则返回false
+				var flag = checkUsername() && checkPassword() && checkTel();
+				return flag;
+			}
+			
+		</script>
+			
+	</body>
+</html>

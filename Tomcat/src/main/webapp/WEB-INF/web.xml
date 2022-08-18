@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!--xml配置文件部署Servlet-->
+    <servlet>
+        <servlet-name>XmlServlet</servlet-name> <!--Servlet名称-->
+        <servlet-class>Servlet.XmlSetupServlet</servlet-class> <!--全限定类名-->
+    </servlet>
+
+    <!--配置URL-->
+    <servlet-mapping>
+        <servlet-name>XmlServlet</servlet-name>
+        <url-pattern>/xml</url-pattern> <!--URL-->
+    </servlet-mapping>
+
+    <!--设置Session自动销毁时间（默认为30分钟）-->
+    <session-config>
+        <session-timeout>40</session-timeout>
+    </session-config>
+</web-app>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>事件监听</title>
+</head>
+<body>
+	
+<!-- 
+	HTML事件是指发生在HTML元素上的 "事情 "。比如：页面上的按钮被点击、鼠标移动到元素之上、按下键盘按键等都是事件。
+	所有事件对象均基于 Event 对象，并继承其所有属性和方法。事件监听是JavaScript 可以在事件被侦测到时执行一段逻辑代码。
+	常见事件:
+		onclick 	鼠标单击事件
+		onblur 		元素失去焦点
+		onfocus 	元素获得焦点
+		onload 		某个页面或图像被完成加载
+		onsubmit 	当表单提交时触发该事件
+		onmouseover 鼠标被移到某元素之上
+		onmouseout 	鼠标从某元素移开
+-->
+	
+	<!--  事件绑定 -->
+	
+	<!--方式一: 通过在标签上添加属性，并绑定函数-->
+	<input type="button" value="方式一" onclick='on()'><br><br> <!-- onclick='on()' 绑定 on() 函数 -->
+	
+	<!-- 方式二: 通过 DOM 元素属性绑定-->
+	<input type="button" value="方式二" id="demo">
+	
+	<script>
+		
+		//方式一绑定函数
+		function on(){
+			alert("方式一");
+		}		
+		//方式二获取 id="btn" 元素对象，通过调用 onclick 属性绑定点击事件
+		document.getElementById("demo").onclick = function (){
+			alert("方式二");
+		}
+	</script>
+	
+</body>
+</html>
