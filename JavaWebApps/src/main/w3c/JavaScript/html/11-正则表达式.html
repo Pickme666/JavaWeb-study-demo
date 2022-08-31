@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>正则表达式</title>
+</head>
+<body>
+
+
+<!-- RegExp 是正则对象。正则对象是判断指定字符串是否符合规则。
+	正则表达式常用的规则如下：
+		^：表示开始
+		$：表示结束
+		[ ]：代表某个范围内的单个字符，比如： [0-9] 单个数字字符
+		.：代表任意单个字符，除了换行和行结束符
+		\w：代表单词字符：字母、数字、下划线()，相当于 [A-Za-z0-9]
+		\d：代表数字字符： 相当于 [0-9]
+		
+	量词：
+		+：至少一个
+		*：零个或多个
+		？：零个或一个
+		{x}：x个
+		{m,}：至少m个
+		{m,n}：至少m个，最多n个 -->
+	
+	<script>
+		
+			//正则对象使用, var reg = /正则表达式/ 注意不要加引号 
+			var reg = /^\w{6,12}$/
+			
+			//test(str) ：判断指定字符串是否符合规则，返回 true或 false
+			var a = reg.test("abc")
+			document.writeln(a + "<br>")
+			
+			var b = reg.test("abcdefg")
+			document.writeln(b)
+			
+	</script>
+</body>
+</html>

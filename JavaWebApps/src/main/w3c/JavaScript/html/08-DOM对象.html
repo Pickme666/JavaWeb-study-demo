@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>DOM对象</title>
+</head>
+<body>
+	
+<!-- HTML DOM
+	HTML DOM：Document Object Model 文档对象模型, avaScript将HTML文档的各个组成部分封装为不同的对象,
+	通过DOM对象就能够对HTML文档进行操作
+	封装的对象分为
+		Document：整个文档对象 (每个载入浏览器的 HTML 文档都会成为 Document 对象 (HTML Document))
+		Element：元素对象
+		Attribute：属性对象
+		Text：文本对象
+		Comment：注释对象
+-->
+	
+	<img id="light" src="../img/off.gif"><br><br>
+	
+	<div class="cls">传智教育</div><br>
+	<div class="cls">黑马程序员</div><br>
+	
+	<input type="checkbox" name="hobby"> 电影
+	<input type="checkbox" name="hobby"> 旅游
+	<input type="checkbox" name="hobby"> 游戏
+	<br><br>
+	
+	<input type="button" value="点击"><br><br>
+	<hr>
+	
+	<script>
+		
+		/* Element 对象
+			Element对象表示HTML元素(标签), Element对象可以拥有类型为元素节点、文本节点、注释节点的子节点。
+			例如：<img> 标签在会浏览器载入时被封装成 Image 对象，同时该对象也是 Element 对象。
+			Element元素对象可以通过Document文档对象直接使用，Document文档对象也是Window对象的一部分
+		*/
+			//Element 元素对象常用函数
+				//getElementById() ：根据 id 属性值获取，返回单个Element对象
+				var img = document.getElementById("light")
+				document.writeln(img + '<br>')
+				
+				//getElementsByTagName() ：根据标签名称获取，返回Element对象数组
+				var divs = document.getElementsByTagName("div")
+				for (let i = 0; i < divs.length; i++) {
+					document.writeln(divs[i] + "<br>")
+				}
+				
+				//getElementsByName() ：根据 name 属性值获取，返回Element对象数组
+				var hobbys = document.getElementsByName("hobby");
+				for (let i = 0; i < hobbys.length; i++) {
+					document.writeln(hobbys[i] + "<br>")
+				}
+				
+				//getElementsByClassName() ：根据 class 属性值获取，返回Element对象数组
+				var clss = document.getElementsByClassName("cls");
+				for (let i = 0; i < clss.length; i++) {
+					document.writeln(clss[i] + "<br>")
+				}
+				
+			//HTML Element对象使用
+			alert("3秒后变化")
+			setTimeout(function() {
+				
+				//替换图片
+				document.getElementById("light").src = "../img/on.gif"
+				
+				//替换内容: style:设置元素css样式; innerHTML：设置元素内容
+				var clss = document.getElementsByClassName("cls");
+				clss[0].innerHTML = "你干嘛, 哎呦"
+				clss[1].innerHTML = "你鸡太美"
+				clss[1].style.color = 'green'
+				
+				//将复选框元素对象的 checked 属性值设置为 true 来改变复选框的选中状态
+				var hobbys = document.getElementsByName("hobby");
+				for (let i = 0; i < hobbys.length; i++) {
+					hobbys[i].checked = true;
+				}
+				
+			},3000)
+			
+			
+	</script>
+</body>
+</html>

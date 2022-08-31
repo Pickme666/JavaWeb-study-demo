@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>js入门</title>
+</head>
+<body>
+	
+<!-- JavaScript 是一门跨平台、面向对象的脚本语言, 不需要编译，由浏览器直接解析并执行, 可以用来控制网页行为的，使网页可交互
+		引入方式:
+			1.内部脚本: 在 HTML 中，JavaScript 代码必须位于 <script> 与 <//script> 标签之间 
+			2.外部脚本: 在页面使用 script 标签中使用 src 属性指定 js 文件的 URL 路径。
+		书写语法:
+			区分大小写, 与 Java 基本一样, 但是每行结尾的分号可有可无
+			注释: 单行注释：// ; 多行注释：/* */ 
+-->
+
+<!-- 内部脚本 -->
+<script>
+    //JavaScript基本语法
+	
+	//输出语句
+    window.alert("hello JavaScript")	//警告框输出
+    document.writeln("hello js")		//HTML输出
+	console.log("hello ikun")			//浏览器控制台输出
+	
+	//变量和常量
+	var test = 20				//var关键字, 作用域为全局变量
+	console.log(test);
+	test = "南华歌姬"			//变量可以重复定义, 且不区分类型
+	console.log(test)
+	let age = 10				//let关键字, 作用域为当前代码块 {}, let定义的变量不能重复定义
+	const pi = 3.14				//const关键字, 用来声明一个只读的常量
+	
+	//数据类型
+	//number：数字, 整数、小数、NaN(Not a Number)
+	var ages = 20;
+	var price = 99.8;
+	console.log(typeof age, typeof price) //使用 typeof 运算符可以获取数据类型
+	
+	//string：字符、字符串，单双引皆可
+	var ch = 'a';
+	var name = '张三';
+	var addr = "北京";
+	console.log(typeof ch, typeof name,typeof addr)
+	
+	//boolean：布尔, true，false
+	var flag = true;
+	var flag2 = false;
+	console.log(typeof flag, typeof flag2)
+	
+	//null：对象为空
+	var obj = null;
+	console.log(typeof obj) //obj变量为null, 但是输出的是object类型, 这实际上是JavaScript最初实现中的一个错误
+	
+	//undefined：当声明的变量未初始化时，该变量的默认值是 undefined
+	var a;
+	console.log(typeof a)
+	
+</script>
+
+<!-- 外部脚本引入 -->
+<script src="../js/JS_Demo.js"></script>
+
+</body>
+</html>

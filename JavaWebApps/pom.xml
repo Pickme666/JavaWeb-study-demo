@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <!-- 依赖管理
+    Maven 坐标详解
+    Maven中的坐标是资源的唯一标识, 使用坐标来定义项目或引入项目中需要的依赖
+        groupId：定义当前Maven项目隶属组织名称（通常是域名反写，例如：com.itheima）
+        artifactId：定义当前Maven项目名称（通常是模块名称，例如 order-service、goods-service）
+        version：定义当前项目版本号
+    -->
+
+    <!-- 当前项目的坐标 -->
+    <groupId>org.example</groupId>
+    <artifactId>JavaWeb</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- 导入jar包 -->
+    <dependencies>
+        <!--MySQL驱动-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.46</version>
+        </dependency>
+
+        <!--druid数据库连接池-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.12</version>
+        </dependency>
+
+        <!--junit单元测试-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <!--<scope>test</scope>-->
+            <!-- 依赖范围: 通过设置坐标的依赖范围 <scope>，可以设置对应jar包的作用范围：编译环境、测试环境、运行环境。默认值为 compile -->
+        </dependency>
+
+        <!--XML文件解析 dom4j-->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.1</version>
+        </dependency>
+    </dependencies>
+
+</project>

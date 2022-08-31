@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>定时器案例</title>
+	</head>
+	<body>
+		
+		<img id="myImage" border="0" src="../img/off.gif" style="text-align:center;">
+		
+		<script>
+		    function on(){ //开灯
+		        document.getElementById('myImage').src='../img/on.gif'; //切换图片
+		    }
+		
+		    function off(){ //关灯
+		        document.getElementById('myImage').src='../img/off.gif' //切换图片
+		    }
+			
+			//闪亮
+			var i = 0
+			var set = setInterval(function(){
+				
+				//循环切换逻辑
+				if (i == 0) {
+					on()
+					i++
+				} else {
+					off()
+					i--
+				}
+				
+			},100)
+		
+		</script>
+	</body>
+</html>

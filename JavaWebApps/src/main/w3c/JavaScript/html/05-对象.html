@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>对象</title>
+</head>
+<body>
+
+	<script>
+		
+		/*JavaScript对象
+			对象属性: 属性名称:值, 被称为属性。
+			对象方法: 方法是在对象上执行的动作。方法以函数定义被存储在属性中。
+		*/
+		
+			//自定义对象
+			var person = {			//对象名 person
+				name: "ikun",		//属性名: 属性值, 用逗号隔开
+				age: 20,
+				eat: function() {	//对象函数(方法)
+					console.log("你干嘛, 哎呦")
+				}
+			}
+			
+			//访问对象
+			console.log(person.name)	//访问对象属性
+			person.eat()				//访问对象方法
+		
+		
+		//JavaScript也提供了很多对象供使用者来使用
+		//这些对象总共分类三类: 基本对象; BOM对象 (Browser对象); DOM对象
+			
+			//基本对象 Array : 用于定义数组
+				
+				//定义方式一
+				var arr = new Array(1,2,3);
+				console.log(arr);
+				
+				//定义方式二
+				var arr2 = [1,2,3]; //使用的是中括号[]
+				console.log(arr2);
+				
+				//访问数组元素
+				arr2[0] = 10;
+				console.log(arr2)
+				
+				//JavaScript中的数组相当于Java中集合。数组的长度是可以变化的，而JavaScript是弱类型，所以可以存储任意的类型的数据。
+					
+					//增长
+					var arr3 = [1,2,3];
+					arr3[8] = 10;
+					console.log(arr3[8]); // 10
+					console.log(arr3[7]); //没有赋值的元素默认为undefined 。
+					console.log(arr3)
+					
+					//添加其他类型数据
+					arr3[5] = "hello";
+					console.log(arr3[5]); // hello
+					console.log(arr3)
+					
+					
+				//Array对象同样也提供了很多方法和属性
+					
+					//length 属性获取数组的长度, 遍历数组
+					for (let i = 0; i < arr3.length; i++) {
+					console.log("元素" + i + ": " + arr3[i]);
+					}
+					
+					//push() 方法：给数组添加元素, 默认添加在末尾
+					arr.push("ikun")
+					console.log(arr)
+					
+					//splice() 方法：删除元素
+						//参数1：索引, 表示从哪个索引位置删除
+						//参数2：删除个数, 表示删除几个元素
+					arr.splice(0,1); //从 0 索引位置开始删除，删除一个元素
+					console.log(arr)
+			
+						
+			//基本对象 String : 字符串对象
+			
+				//定义方式一
+				var s1 = new String("abc")
+				
+				//定义方式二
+				var s2 = "abc"
+				var s3 = ' abc  '
+				
+				//length 属性
+				console.log(s1.length)
+				
+				//trim() 方法去字符串前后两端的空白字符 (该方法在文档中没有体现，但是所有的浏览器都支持)
+				console.log(1 + s3.trim() + 1)
+			
+	</script>
+
+</body>
+</html>

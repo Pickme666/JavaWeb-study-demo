@@ -1,0 +1,52 @@
+/* 表单验证案例css样式 */
+
+*{
+	padding: 0;
+	margin: 0;
+}
+
+a{
+	text-decoration: none;
+}
+
+body{
+	background-image: url("../img/reg_bg_min.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#demo{
+	width: 350px;
+	height: 300px;
+	padding: 40px;
+	margin-top: 50px;
+	margin-left: 200px;
+	background-color: rgba(170, 255, 255, 0.7);
+}
+
+#demo .test{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#demo a{
+	font-size: 13px;
+	margin-left: 8px;
+	
+}
+
+#password{
+	margin-left: 16px;
+}
+
+#demo span{
+	color: red;
+	font-size: 12px;
+	margin-left: 10px;
+}
+
+#userSubmit{
+	margin-top: 20px;
+	width: 120px;
+	height: 30px;
+}

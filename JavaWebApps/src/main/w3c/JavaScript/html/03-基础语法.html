@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>基础语法</title>
+</head>
+<body>
+
+<script>
+	alert("基础语法")
+	
+	//运算符
+		//JavaScrip的运算大部分和Java语言一样的，不同的是 JS 关系运算符中的 == 和 ===
+		//== 和 === 的区别
+			//== 等于号：先判断类型是否一样，如果不一样，则进行类型转换再去比较其值
+			//=== 全等于号：先判断类型是否一样，如果不一样，直接返回false
+			var age1 = 20;
+			var age2 = "20";
+			console.log(age1 == age2); // true
+			console.log(age1 === age2); // false
+	
+	//类型转换
+		//其他类型转为number
+			//string 转换为 number 类型：按照字符串的字面值，转为数字。如果字面值不是数字，则转为NaN (不是数字的number类型)
+			var str = +"20";				//使用 + 正号运算符：
+			console.log(str + 1)			//21
+			var str = "20";
+			console.log(parseInt(str) + 1)	//使用 parseInt() 函数(方法)：
+				
+			//boolean 转换为 number 类型：true 转为1，false转为0
+			var flag = +false;
+			console.log(flag); // 0
+		
+		//其他类型转为boolean
+			//number 类型转换为 boolean 类型：0和NaN转为false，其他的数字转为true
+			//string 类型转换为 boolean 类型：空字符串转为false，其他的字符串转为true
+			//null类型转换为 boolean 类型是 false
+			//undefined 转换为 boolean 类型是 false
+			var flag = undefined; //var flag = 3; //var flag = "";
+			if (flag) {
+				console.log("转为true");
+			} else {
+				console.log("转为false");
+			}	
+		//使用场景
+			var str = "abc";
+			//健壮性判断
+			//if (str != null && str.length > 0) {
+			//由于JavaScript会自动进行类型转换，所以上述的判断可以进行简化
+			if (str) {
+				console.log("转为true");
+			} else {
+				console.log("转为false");
+			}
+		
+	//流程控制语句
+		//JavaScript中提供了和Java一样的流程控制语句, 使用方式也一样: if;  switc;  for;  while;  do while
+			//for循环小括号的变量建议使用let定义作用域为局部
+			var sum = 0;
+			for (let i = 1; i <= 100; i++) { 
+				sum += i;
+			}
+			console.log(sum);
+	
+	
+</script>
+
+</body>
+</html>
